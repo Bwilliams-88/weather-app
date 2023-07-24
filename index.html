@@ -9,11 +9,14 @@
 <body>
     <div class="container">
         <h1>Weather Dashboard</h1>
-        <input type="text" id="locationInput" placeholder="Enter a location">
-        <button id="fetchButton">Get Weather</button>
-        <div id="weatherInfo">
-            <!--This is where the weather data will be displayed-->
-        </div>
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button onclick="searchWeather()">Search</button>
+      </div>
+      <div id="weatherInfo">
+        <!-- Weather information will be displayed here -->
+      </div>
+      <div id="searchHistory">
+        <!-- Search history will be displayed here -->
     </div>
 
     <script src="./assets/js/script.js"></script>
