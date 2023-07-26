@@ -1,24 +1,37 @@
     const apiKey = "a39d12d193c78d9930f104a6c6fb6d98";
     const searchHistory = [];
 
-    function searchWeather() {
+    async function searchWeather() {
       const cityInput = document.getElementById('cityInput').value;
-      fetchWeatherData(cityInput)
-        .then((data) => {
-          // Display current weather data
-          displayCurrentWeather(data);
+      const data = await fetchWeatherData(cityInput);
+      // console.log(data.coord);
+      displayCurrentWeather(data);
+      // displayForecast(data);
+      addToSearchHistory(cityInput);
+      const list = await fetchCoordData(data.coord);
+      displayForecast(list);
+      // console.log(list);
+        // .then((data) => {
+        //   // Displays current weather data
+        //   displayCurrentWeather(data);
     
-          // Display 5-day forecast
-          displayForecast(data);
+        //   // Displays 5-day forecast
+        //   displayForecast(data);
     
-          // Add the city to search history
-          addToSearchHistory(cityInput);
-        })
-        .catch((error) => {
-          console.error('Error fetching weather data:', error);
-        });
+        //   // Adds the city to search history
+        //   addToSearchHistory(cityInput);
+        // })
+        // .catch((error) => {
+        //   console.error('Error fetching weather data:', error);
+       // });
     }
     
+    async function fetchCoordData(coord) {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}`)
+      const data = await response.json();
+      return data.list;
+    }
+
     async function fetchWeatherData(city) {
       try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`);
@@ -30,7 +43,7 @@
     }
     
     function displayCurrentWeather(data) {
-      // Extract necessary data from the API response
+      // Extracts necessary data from the API response
       const city = data.name;
       const date = new Date(data.dt * 1000).toLocaleDateString();
       const icon = data.weather[0].icon;
@@ -38,7 +51,7 @@
       const humidity = data.main.humidity;
       const windSpeed = data.wind.speed;
     
-      // Display current weather data in the HTML element
+      // Displays current weather data in the HTML element
       const currentWeatherDiv = document.getElementById('currentWeather');
       currentWeatherDiv.innerHTML = `
         <h2>${city} - ${date}</h2>
@@ -49,21 +62,24 @@
       `;
     }
     
-    function displayForecast(data) {
+    function displayForecast(list) {
       const forecastContainer = document.getElementById('forecast');
       forecastContainer.innerHTML = '';
-
-      data.list.forEach(item => {
+      console.log(list);
+      for (let i = 0; i < 5; i++) {
+        const element = arr;
+        
+      }
+      list.forEach(item => {
         const forecastItem = document.createElement('div');
         forecastItem.innerHTML = `
-        <p>Date/Time: ${item.dt_txt}</p>
+        <p>Date/Time: ${item.dt}</p>
         <p>Temperature: ${item.main.temp} °F</p>
         <p>Weather: ${item.weather[0].description}</p>
         <hr>
         `;
       })
       // Fetch 5-day forecast data using another API endpoint (not shown here)
-      // You can use the OpenWeatherMap API again to fetch the forecast data
     
       // Once you have the forecast data, loop through it and display each day's forecast
       // in the "forecast" div using a similar approach as displayCurrentWeather()
