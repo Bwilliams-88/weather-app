@@ -10,19 +10,21 @@
     <header class="header">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="forecast-container">
-        <h1>Search for a City:</h1>
+    <body>
+      <div id="searchForm">
         <input type="text" id="cityInput" placeholder="Enter city name">
+        <br>
         <button onclick="searchWeather()">Search</button>
-        <hr class="solid">
       </div>
-      <div id="weatherInfo">
-        <!-- Weather information will be displayed here -->
-      </div>
+      <hr class="solid">
+    
+      <div id="currentWeather"></div>
+      <div id="forecast"></div>
+    
       <div id="searchHistory">
-        <!-- Search history will be displayed here -->
-    </div>
+        <!-- Display search history here -->
+      </div>
 
-    <script src="./assets/js/script.js"></script>
+<script src="./assets/js/script.js"></script>
 </body>
 </html>
