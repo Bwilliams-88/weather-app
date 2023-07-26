@@ -4,9 +4,7 @@
     async function searchWeather() {
       const cityInput = document.getElementById('cityInput').value;
       const data = await fetchWeatherData(cityInput);
-      // console.log(data.coord);
       displayCurrentWeather(data);
-      // displayForecast(data);
       addToSearchHistory(cityInput);
       const list = await fetchCoordData(data.coord);
       displayForecast(list);
@@ -65,12 +63,9 @@
     function displayForecast(list) {
       const forecastContainer = document.getElementById('forecast');
       forecastContainer.innerHTML = '';
-      console.log(list);
+      //console.log(list);
       for (let i = 0; i < 5; i++) {
-        const element = arr;
-        
-      }
-      list.forEach(item => {
+        list.forEach(item => {
         const forecastItem = document.createElement('div');
         forecastItem.innerHTML = `
         <p>Date/Time: ${item.dt}</p>
@@ -78,11 +73,7 @@
         <p>Weather: ${item.weather[0].description}</p>
         <hr>
         `;
-      })
-      // Fetch 5-day forecast data using another API endpoint (not shown here)
-    
-      // Once you have the forecast data, loop through it and display each day's forecast
-      // in the "forecast" div using a similar approach as displayCurrentWeather()
+      })}
     }
   
     
