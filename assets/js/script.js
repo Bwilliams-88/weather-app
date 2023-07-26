@@ -1,4 +1,4 @@
-    var apiKey = "a39d12d193c78d9930f104a6c6fb6d98";
+    const apiKey = "a39d12d193c78d9930f104a6c6fb6d98";
     const searchHistory = [];
 
     function searchWeather() {
@@ -43,19 +43,32 @@
       currentWeatherDiv.innerHTML = `
         <h2>${city} - ${date}</h2>
         <img src="https://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
-        <p>Temperature: ${temperature} °C</p>
+        <p>Temperature: ${temperature} °F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind Speed: ${windSpeed} m/s</p>
       `;
     }
     
     function displayForecast(data) {
+      const forecastContainer = document.getElementById('forecast');
+      forecastContainer.innerHTML = '';
+
+      data.list.forEach(item => {
+        const forecastItem = document.createElement('div');
+        forecastItem.innerHTML = `
+        <p>Date/Time: ${item.dt_txt}</p>
+        <p>Temperature: ${item.main.temp} °F</p>
+        <p>Weather: ${item.weather[0].description}</p>
+        <hr>
+        `;
+      })
       // Fetch 5-day forecast data using another API endpoint (not shown here)
       // You can use the OpenWeatherMap API again to fetch the forecast data
     
       // Once you have the forecast data, loop through it and display each day's forecast
       // in the "forecast" div using a similar approach as displayCurrentWeather()
     }
+  
     
     function addToSearchHistory(city) {
       if (!searchHistory.includes(city)) {
@@ -83,4 +96,4 @@
 
 
   //  var apiKey = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}&units=imperial";
-  //  var latLonApit = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}'
+  //  var latLonApi = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}'
