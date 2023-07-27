@@ -63,17 +63,10 @@
     function displayForecast(list) {
       const forecastContainer = document.getElementById('forecast');
       forecastContainer.innerHTML = '';
-      //console.log(list);
+      console.log(list);
       for (let i = 0; i < 5; i++) {
-        list.forEach(item => {
-        const forecastItem = document.createElement('div');
-        forecastItem.innerHTML = `
-        <p>Date/Time: ${item.dt}</p>
-        <p>Temperature: ${item.main.temp} °F</p>
-        <p>Weather: ${item.weather[0].description}</p>
-        <hr>
-        `;
-      })}
+        console.log(i);
+      }
     }
   
     
