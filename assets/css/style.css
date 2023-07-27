@@ -1,3 +1,7 @@
+title {
+  margin-bottom: 10px;
+}
+
 button {
   border-radius: 4px;
   background-color: lightblue;
@@ -13,31 +17,24 @@ h1 {
   font-size: 20px;
 }
 
-.forecast-container {
-  text-align: left;
-  margin-top: 20px;
-}
-
-.history-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#weatherInfo {
-  text-align: left;
-  margin-top: 20px;
-}
-
-#searchHistory {
-  text-align: left;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
 hr.solid {
   position: absolute;
   border-top: 2px solid black;
   width: 17.3%;
+}
+
+.forecast {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.currentWeather {
+  flex-wrap: wrap;
+}
+
+.history {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .header {

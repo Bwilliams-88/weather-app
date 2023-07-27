@@ -60,15 +60,26 @@
       `;
     }
     
+    const array = ['item1', 'item2', 'item3', 'item4', 'item5'];
     function displayForecast(list) {
       const forecastContainer = document.getElementById('forecast');
       forecastContainer.innerHTML = '';
       console.log(list);
       for (let i = 0; i < 5; i++) {
-        console.log(i);
+        // dayjs().format('MM/DD/YYY');
+        const listItem = list[i];
+        const div = document.createElement('div');
+        div.innerHTML = `
+        <h2>${listItem.dt_txt}</h2>
+        <img src="https://openweathermap.org/img/w/${listItem.weather[0].icon}.png" alt="Weather Icon">
+        <p>Temperature: ${listItem.main.temp} °F</p>
+        <p>Humidity: ${listItem.main.humidity}%</p>
+        <p>Wind Speed: ${listItem.wind.speed} m/s</p>
+        `;
+        console.log(list[i]);
+        forecastContainer.append(div);
       }
     }
-  
     
     function addToSearchHistory(city) {
       if (!searchHistory.includes(city)) {
